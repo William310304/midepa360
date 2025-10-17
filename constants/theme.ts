@@ -1,31 +1,42 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
 
 import { Platform } from 'react-native';
+import { DefaultTheme } from 'styled-components/native';
+
+
+declare module "styled-components/native" {
+  export interface DefaultTheme {
+    background: string;
+    text: string;
+    primary: string;
+    splashBackground: string;
+    subText: string;
+  }
+}
 
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
-export const Colors = {
+export const Colors: Record<'light' | 'dark', DefaultTheme> = {
   light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    background: '#fdfdfd',
+    text: '#080808',
+    primary: '#0a7ea4',
+    splashBackground: '#F0F0F0',
+    subText:'#525252'
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    background: '#1a1b1e',
+    text: '#f0f0f0',
+    primary: '#0a7ea4',
+    splashBackground: '#222222',
+    subText:'#a0a0a0'
   },
 };
+
+// export function getThemeColor(colorSheme:ColorSchemeName,colorName:string){
+//   const theme = colorSheme ?? 'light';
+//   return Colors[theme][colorName];
+// }
 
 export const Fonts = Platform.select({
   ios: {
