@@ -10,6 +10,7 @@ declare module "styled-components/native" {
     primary: string;
     splashBackground: string;
     subText: string;
+    backgroundInput:string;
   }
 }
 
@@ -22,14 +23,16 @@ export const Colors: Record<'light' | 'dark', DefaultTheme> = {
     text: '#080808',
     primary: '#0a7ea4',
     splashBackground: '#F0F0F0',
-    subText:'#525252'
+    subText:'#525252',
+    backgroundInput:'#F0F0F0'
   },
   dark: {
     background: '#1a1b1e',
     text: '#f0f0f0',
     primary: '#0a7ea4',
     splashBackground: '#222222',
-    subText:'#a0a0a0'
+    subText:'#a0a0a0',
+    backgroundInput:'#2a2a2a'
   },
 };
 

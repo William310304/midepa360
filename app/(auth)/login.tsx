@@ -2,8 +2,9 @@ import Octicons from "@expo/vector-icons/Octicons";
 
 import { useFonts } from "expo-font";
 import { Image } from "expo-image";
+import { router } from "expo-router";
 import { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity, useColorScheme } from "react-native";
 import styled from "styled-components/native";
 
 
@@ -12,6 +13,7 @@ export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [dni, setDni] = useState("");
     const [password, setPassword] = useState("");
+    const colorSchema = useColorScheme();
 
     const [fontsLoaded] = useFonts({
         "Alan_sans_black": require("../../assets/fonts/alan_sans_black.ttf"),
@@ -20,6 +22,20 @@ export default function Login() {
         "Alan_sans_regular": require("../../assets/fonts/alan_sans_regular.ttf"),
 
     });
+
+    const handleLogin = ()=>{
+        if(!dni.trim()){
+            Alert.alert("Error","Por favor ingrese tu DNI")
+            return;
+        }
+        if(dni.length !== 8 || !/^\d+$/.test(dni)) {
+            Alert.alert("Error","El DNI tiene que tener 8 digitos numéricos")
+            return;
+        }
+        if(password == "william"){
+            router.replace("/(tabs)")
+        }
+    }
     if (!fontsLoaded) {
         return null;
     }
@@ -46,7 +62,7 @@ export default function Login() {
                 <Label>DNI</Label>
                 <Input
                     placeholder="Tu DNI"
-                    placeholderTextColor="#8E8E8E"
+                    placeholderTextColor={colorSchema=== 'dark'?"#8E8E8E":"#080808"}
                     value={dni}
                     onChangeText={setDni}
                     keyboardType="numeric"
@@ -56,7 +72,7 @@ export default function Login() {
                 <InputWrapper>
                     <InputPassword
                         placeholder="Tu Contraseña"
-                        placeholderTextColor="#8E8E8E"
+                        placeholderTextColor={colorSchema=== 'dark'?"#8E8E8E":"#080808"}
                         value={password}
                         onChangeText={setPassword}
                         secureTextEntry={!showPassword}
@@ -65,12 +81,12 @@ export default function Login() {
                         <Octicons
                             name={showPassword ? "eye-closed" : "eye"}
                             size={22}
-                            color="#8E8E8E"
+                            color={colorSchema=== 'dark'?"#8E8E8E":"#080808"}
                         />
                     </TouchableOpacity>
                 </InputWrapper>
 
-                <LoginButton>
+                <LoginButton onPress={handleLogin}>
                     <LoginButtonText>INICIAR SESIÓN</LoginButtonText>
                 </LoginButton>
             </Form>
@@ -141,8 +157,8 @@ const Label = styled.Text`
 
 const Input = styled.TextInput`
   /* width: 100%; */
-  background-color: #2a2a2a;
-  color: #fff;
+  background-color: ${({theme})=>theme.backgroundInput};
+  color: ${({theme})=>theme.text};
   border-radius: 8px;
   padding: 12px 15px;
   margin-bottom: 15px;
@@ -153,7 +169,7 @@ const InputWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #2a2a2a;
+  background-color: ${({theme})=>theme.backgroundInput};
   border-radius: 8px;
   padding: 0 15px;
   margin-bottom: 20px;
@@ -161,9 +177,10 @@ const InputWrapper = styled.View`
 
 const InputPassword = styled.TextInput`
   flex: 1;
-  color: #fff;
   font-family: "Alan_sans_regular";
   padding: 12px 0;
+    color: ${({theme})=>theme.text};
+
 `;
 
 const LoginButton = styled.TouchableOpacity`
