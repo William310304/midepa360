@@ -1,25 +1,33 @@
+import { useAuthCheck } from "@/hooks/useAuthCheck";
 import { router } from "expo-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import SplashScreen from "./splashScreen";
 
+
 export default function Index() {
-    // const [isShowSplash, setIsShowSplash] = useState(true);
+    const [showSplash, setShowSplash] = useState(true);
+    const { checking,isAuthenticated } = useAuthCheck();
     useEffect(() => {
-       const timer =  setTimeout(() => {
-            // setIsShowSplash(false)
-            router.replace("/(auth)");
-        }, 3000);
-        
-      return () => clearTimeout(timer); 
-    },[])
+        const timer = setTimeout(() => setShowSplash(false), 3200);
+        return () => clearTimeout(timer);
+    }, [])
+
+    useEffect(() => {
+      
+    if (!checking && !showSplash) {
+        if(isAuthenticated){
+            router.replace("/(tabs)")
+        }else{
+            router.replace("/(auth)/login");
+        }
+    }
+      
+    }, [checking,showSplash,isAuthenticated])
+    
     
     return (
-        <Container>
-            <SplashScreen/>
-        </Container>
-
-
+          <SplashScreen  />
     );
 }
 

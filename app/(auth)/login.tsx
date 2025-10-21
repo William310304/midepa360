@@ -1,20 +1,23 @@
+import { useAuth } from "@/hooks/aseAuth";
+import { useAppToast } from "@/hooks/useAppToast";
 import Octicons from "@expo/vector-icons/Octicons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useFonts } from "expo-font";
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Alert, TouchableOpacity, useColorScheme } from "react-native";
+import { TouchableOpacity, useColorScheme } from "react-native";
 import styled from "styled-components/native";
 
 
 export default function Login() {
-
+    const { login, loading, error } = useAuth();
     const [showPassword, setShowPassword] = useState(false);
+    const { showToast } = useAppToast();
     const [dni, setDni] = useState("");
     const [password, setPassword] = useState("");
     const colorSchema = useColorScheme();
-
     const [fontsLoaded] = useFonts({
         "Alan_sans_black": require("../../assets/fonts/alan_sans_black.ttf"),
         "Alan_sans_bold": require("../../assets/fonts/alan_sans_bold.ttf"),
@@ -23,18 +26,55 @@ export default function Login() {
 
     });
 
-    const handleLogin = ()=>{
-        if(!dni.trim()){
-            Alert.alert("Error","Por favor ingrese tu DNI")
+    // const login = async (dni)
+    const handleLogin = async () => {
+        // await login(dni, password)
+
+        if (dni.trim() === "" || password.trim() === "") {
+            showToast(
+                'error',
+                'Fallo de Autenticación',
+                "Por favor, completa todos los campos"
+            );
             return;
         }
-        if(dni.length !== 8 || !/^\d+$/.test(dni)) {
-            Alert.alert("Error","El DNI tiene que tener 8 digitos numéricos")
+        if (dni.length < 8 || dni.length > 8 || !/^\d+$/.test(dni)) {
+            showToast(
+                'error',
+                'Fallo de Autenticación',
+                "Por favor, ingrese un DNI validido de 8 dígitos"
+            );
             return;
         }
-        if(password == "william"){
-            router.replace("/(tabs)")
+        if (password.length < 6) {
+            showToast(
+                'error',
+                'Fallo de Autenticación',
+                "Por favor, la contraseña debe tener al menos 6 caracteres"
+            );
+            return;
         }
+        const res = await login(dni, password);
+        console.log("----Respuesta login:", res);
+        console.log("Error : ", error)
+        if (res?.status === "true" && res?.data) {
+            await AsyncStorage.setItem("toastNombre", res?.data.Nombre);
+            router.replace("/(tabs)");
+        } else {
+            showToast(
+                'error',
+                'Fallo de Autenticación',
+                "DNI o contraseña incorrectos"
+            );
+            return;
+            // Alert.alert("Error", res?.message ?? "DNI o contraseña incorrectos");
+        }
+        // if (user) {
+        //     Alert.alert("Bienvenido", `hola ${user.Nombre} ${user.Apellido}`)
+        //     router.replace("/(tabs)")
+        // } else {
+        //     Alert.alert("Error", "DNI o contraseña incorrectos" + error);
+        // }
     }
     if (!fontsLoaded) {
         return null;
@@ -62,7 +102,7 @@ export default function Login() {
                 <Label>DNI</Label>
                 <Input
                     placeholder="Tu DNI"
-                    placeholderTextColor={colorSchema=== 'dark'?"#8E8E8E":"#080808"}
+                    placeholderTextColor={colorSchema === 'dark' ? "#8E8E8E" : "#080808"}
                     value={dni}
                     onChangeText={setDni}
                     keyboardType="numeric"
@@ -72,7 +112,7 @@ export default function Login() {
                 <InputWrapper>
                     <InputPassword
                         placeholder="Tu Contraseña"
-                        placeholderTextColor={colorSchema=== 'dark'?"#8E8E8E":"#080808"}
+                        placeholderTextColor={colorSchema === 'dark' ? "#8E8E8E" : "#080808"}
                         value={password}
                         onChangeText={setPassword}
                         secureTextEntry={!showPassword}
@@ -81,18 +121,18 @@ export default function Login() {
                         <Octicons
                             name={showPassword ? "eye-closed" : "eye"}
                             size={22}
-                            color={colorSchema=== 'dark'?"#8E8E8E":"#080808"}
+                            color={colorSchema === 'dark' ? "#8E8E8E" : "#080808"}
                         />
                     </TouchableOpacity>
                 </InputWrapper>
 
-                <LoginButton onPress={handleLogin}>
-                    <LoginButtonText>INICIAR SESIÓN</LoginButtonText>
+                <LoginButton onPress={handleLogin} disabled={loading}>
+                    <LoginButtonText>{loading ? "Cargando..." : "Iniciar sesión"}</LoginButtonText>
                 </LoginButton>
             </Form>
 
             <RowLinks>
-                <LinkText style={{color: "#8c5cff"}}>¿Olvidaste tu contraseña?</LinkText>
+                <LinkText style={{ color: "#8c5cff" }}>¿Olvidaste tu contraseña?</LinkText>
                 <LinkText>¿Problema para iniciar sesión? <LinkAccent>Contáctanos</LinkAccent></LinkText>
             </RowLinks>
         </Container>
@@ -157,8 +197,8 @@ const Label = styled.Text`
 
 const Input = styled.TextInput`
   /* width: 100%; */
-  background-color: ${({theme})=>theme.backgroundInput};
-  color: ${({theme})=>theme.text};
+  background-color: ${({ theme }) => theme.backgroundInput};
+  color: ${({ theme }) => theme.text};
   border-radius: 8px;
   padding: 12px 15px;
   margin-bottom: 15px;
@@ -169,7 +209,7 @@ const InputWrapper = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({theme})=>theme.backgroundInput};
+  background-color: ${({ theme }) => theme.backgroundInput};
   border-radius: 8px;
   padding: 0 15px;
   margin-bottom: 20px;
@@ -179,7 +219,7 @@ const InputPassword = styled.TextInput`
   flex: 1;
   font-family: "Alan_sans_regular";
   padding: 12px 0;
-    color: ${({theme})=>theme.text};
+    color: ${({ theme }) => theme.text};
 
 `;
 

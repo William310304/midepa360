@@ -19,7 +19,9 @@
         "monochromeImage": "./assets/images/logo.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      //permitir conexiones HTTP
+      "usesCleartextTraffic": true
     },
     "web": {
       "output": "static",

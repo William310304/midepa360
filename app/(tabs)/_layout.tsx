@@ -5,15 +5,19 @@ import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { config } from '@gluestack-ui/config';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { ColorSchemeName } from 'react-native';
 
 export default function TabLayout() {
   const colorScheme:ColorSchemeName = useColorScheme();
 
+
   return (
-    <Tabs
+    <GluestackUIProvider config={config}>
+      <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
         headerShown: false,
         tabBarButton: HapticTab,
       }}>
@@ -32,5 +36,7 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    </GluestackUIProvider>
+    
   );
 }
