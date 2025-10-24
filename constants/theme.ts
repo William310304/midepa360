@@ -1,5 +1,5 @@
 
-import { Platform } from 'react-native';
+import { ColorSchemeName, Platform } from 'react-native';
 import { DefaultTheme } from 'styled-components/native';
 
 
@@ -10,7 +10,9 @@ declare module "styled-components/native" {
     primary: string;
     splashBackground: string;
     subText: string;
-    backgroundInput:string;
+    backgroundInput: string;
+    backgroundCard: string;
+    [key: string]: string; // Add index signature
   }
 }
 
@@ -24,22 +26,24 @@ export const Colors: Record<'light' | 'dark', DefaultTheme> = {
     primary: '#0a7ea4',
     splashBackground: '#F0F0F0',
     subText:'#525252',
-    backgroundInput:'#F0F0F0'
+    backgroundInput:'#F0F0F0',
+    backgroundCard:'#fdfdfd'
   },
   dark: {
-    background: '#1a1b1e',
+    background: '#1A1B1E',
     text: '#f0f0f0',
     primary: '#0a7ea4',
     splashBackground: '#222222',
     subText:'#a0a0a0',
-    backgroundInput:'#2a2a2a'
+    backgroundInput:'#2a2a2a',
+    backgroundCard:'#2e3035ff'
   },
 };
 
-// export function getThemeColor(colorSheme:ColorSchemeName,colorName:string){
-//   const theme = colorSheme ?? 'light';
-//   return Colors[theme][colorName];
-// }
+export function getThemeColor(colorSheme:ColorSchemeName,colorName:string){
+  const theme = colorSheme ?? 'light';
+  return Colors[theme][colorName];
+}
 
 export const Fonts = Platform.select({
   ios: {

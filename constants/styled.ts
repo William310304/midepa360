@@ -7,3 +7,8 @@ export const ContainerSplash = styled.View`
     justify-content: center;
     align-items: center;
 `
+export const Row = styled.View`
+   
+    flex-direction: row;
+    align-items: center;
+`

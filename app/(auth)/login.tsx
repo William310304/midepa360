@@ -67,14 +67,8 @@ export default function Login() {
                 "DNI o contraseña incorrectos"
             );
             return;
-            // Alert.alert("Error", res?.message ?? "DNI o contraseña incorrectos");
         }
-        // if (user) {
-        //     Alert.alert("Bienvenido", `hola ${user.Nombre} ${user.Apellido}`)
-        //     router.replace("/(tabs)")
-        // } else {
-        //     Alert.alert("Error", "DNI o contraseña incorrectos" + error);
-        // }
+        
     }
     if (!fontsLoaded) {
         return null;
@@ -142,7 +136,8 @@ export default function Login() {
 const Container = styled.View`
     flex: 1;
     justify-content: center; 
-    align-items: center; 
+    align-items: center;
+    background-color: ${({theme})=>theme.background}
 `
 
 const Logo = styled(Image)`

@@ -11,11 +11,12 @@ export function useAppToast(){
     const showToast = (type: ToasType, title : string, description: string, duration: number = 50000) =>{
         toast.closeAll();
         toast.show({
+            
             placement: type === 'success' ? 'top': 'bottom',
             render: ({id})=>{
                 const toastId = "toast-"+id;
                 const Icon = type === 'success' ? CheckCircle:AlertTriangle;
-                const color = type === 'success'? 'white':'red';
+                const color = type === 'success'? '#000':'red';
                 const action = type === 'success'? 'success':'error'
                 const variant = type === 'success'? 'solid': 'outline';
                 return(
@@ -28,6 +29,7 @@ export function useAppToast(){
                     </Toast>
                 )
             },
+            containerStyle:{marginTop:15},
             duration:duration
         })
     }

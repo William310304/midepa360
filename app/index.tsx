@@ -14,7 +14,7 @@ export default function Index() {
     }, [])
 
     useEffect(() => {
-      
+    
     if (!checking && !showSplash) {
         if(isAuthenticated){
             router.replace("/(tabs)")
