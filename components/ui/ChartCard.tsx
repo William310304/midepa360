@@ -1,8 +1,8 @@
 import { Colors } from "@/constants/theme";
 import React from "react";
-import { Platform, Text, useColorScheme, View } from "react-native";
+import { Text, useColorScheme, View } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
-import styled, { DefaultTheme } from "styled-components/native";
+import styled from "styled-components/native";
 
 export const ChartCard = () => {
   const isDark = useColorScheme() === 'dark';
@@ -110,7 +110,7 @@ export const ChartCard = () => {
                 paddingVertical: 3,
                 borderRadius: 4,
               }}>
-              <Text>{item.value}</Text>
+              <Text>S/{item.value}</Text>
             </View>
           )
         }}

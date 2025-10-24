@@ -3,14 +3,16 @@ import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { config } from '@gluestack-ui/config';
 import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { Tabs } from 'expo-router';
 import React, { useState } from 'react';
 import { ColorSchemeName } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { ThemeProvider } from 'styled-components/native';
 import 'react-native-reanimated';
+import { ThemeProvider } from 'styled-components/native';
 
 
 export default function TabLayout() {
@@ -74,13 +76,25 @@ export default function TabLayout() {
               }}
             />
             <Tabs.Screen
-              name="explore"
+              name='servicios'
               options={{
-                title: 'Explore',
-                tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-              }}
-            />
+                title: 'Servicios',
+                tabBarIcon: ({ color }) => <Ionicons size={28} name="options" color={color} />,
+              }} />
+            <Tabs.Screen
+              name='finanzas'
+              options={{
+                title: 'Finanzas',
+                tabBarIcon: ({ color }) => <MaterialIcons size={28} name="assignment" color={color} />
+              }} />
+            <Tabs.Screen
+              name='documentos'
+              options={{
+                title: 'Documentos',
+                tabBarIcon: ({ color }) => <Ionicons size={28} name='document' color={color} />
+              }} />
           </Tabs>
+
         </GluestackUIProvider>
       </ThemeProvider>
 

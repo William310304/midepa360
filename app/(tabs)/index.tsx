@@ -3,8 +3,10 @@ import { CardComponent } from '@/components/card';
 import { ChartCard } from '@/components/ui/ChartCard';
 import { Row } from '@/constants/styled';
 import { useAppToast } from '@/hooks/useAppToast';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+
 import { Button, ButtonIcon, ButtonText } from '@gluestack-ui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ChevronRight } from 'lucide-react-native';
@@ -30,7 +32,7 @@ export default function HomeScreen() {
         console.log(await AsyncStorage.getItem("toastNombre"));
         // await AsyncStorage.removeItem("toastNombre");
         console.log(all);
-
+        
       }
     })();
   }, []);
@@ -109,7 +111,7 @@ export default function HomeScreen() {
                   <TextTheme style={{ fontSize: 11 }}>Servicio pagado</TextTheme>
                 </View>
               </Row>
-              <TextGreen style={{ marginTop: 0, color: "#7DBF6C", fontSize: 16, maxWidth: 95, fontFamily: 'Alan_sans_regular' }} numberOfLines={1} ellipsizeMode="tail">S/90000.00</TextGreen>
+              <TextGreen style={{ marginTop: 0, color: "#7DBF6C", fontSize: 16, maxWidth: 95, fontFamily: 'Alan_sans_regular' }} numberOfLines={1} ellipsizeMode="tail">S/800.00</TextGreen>
             </Row>
           </CardComponent>
           <CardComponent variant='outlined'>
@@ -121,13 +123,14 @@ export default function HomeScreen() {
                   <TextTheme style={{ fontSize: 11 }}>Servicio faltante</TextTheme>
                 </View>
               </Row>
-              <TextGreen style={{ marginTop: 0, color: "#D77E7E", fontSize: 16, maxWidth: 95, fontFamily: 'Alan_sans_regular' }} numberOfLines={1} ellipsizeMode="tail">S/90000.00</TextGreen>
+              <TextGreen style={{ marginTop: 0, color: "#D77E7E", fontSize: 16, maxWidth: 95, fontFamily: 'Alan_sans_regular' }} numberOfLines={1} ellipsizeMode="tail">S/900.00</TextGreen>
             </Row>
           </CardComponent>
 
         </CardComponent>
         <Row style={{ justifyContent: 'space-between', alignItems: 'center', width: '100%', marginTop: 15 }}>
-          <TextTheme style={{ fontSize: 15 }}>Pagos pendientes</TextTheme>
+          
+          <TextTheme style={{ fontSize: 15 }}><AntDesign color={'#ff7300'} name='exclamation-circle'></AntDesign> Pagos pendientes</TextTheme>
           <Btn
             variant="outline"
             size="xs"
