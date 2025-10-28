@@ -1,4 +1,5 @@
 import { Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectTrigger } from "@gluestack-ui/themed";
+import { router } from "expo-router";
 import { ChevronDownIcon, User } from "lucide-react-native";
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
@@ -24,7 +25,6 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
     return (
         <HeaderContainer >
 
-            {/* Lado Derecho: Foto de Perfil */}
             <Select
                 style={{ width: 200 }}
                 // defaultValue={condominioName}
@@ -58,7 +58,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
                     </SelectContent>
                 </SelectPortal>
             </Select>
-            <TouchableOpacity style={styles.profileWrapper}>
+            <TouchableOpacity style={styles.profileWrapper} onPress={()=> router.push('/(auth)')} >
                 {userImageUri ? (
                     <Image source={{ uri: userImageUri }} style={styles.profileImage} />
                 ) : (
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
         marginRight: 5,
     },
     profileWrapper: {
-        width: 60,
-        height: 60,
+        width: 45,
+        height: 45,
         borderRadius: 30,
         overflow: 'hidden',
         backgroundColor: '#ccc',

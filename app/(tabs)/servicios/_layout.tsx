@@ -14,7 +14,7 @@ export default function ServicioLayout() {
     <ThemeProvider theme={theme}>
       <GluestackUIProvider config={config}>
         <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
+          <Stack.Screen name="index"/>
           <Stack.Screen name="areas-comunes" />
           <Stack.Screen name="calendario" />
           <Stack.Screen name="inmuebles" />

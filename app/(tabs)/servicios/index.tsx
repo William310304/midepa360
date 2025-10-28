@@ -20,8 +20,9 @@ export default function Index() {
             <FlatList
                 data={datos} // fuente de datos
                 keyExtractor={(item) => item.id} // clave única
+                style={{padding:5}}
                 renderItem={({ item }) => (
-                    <TouchableOpacity>
+                    <TouchableOpacity >
                         <Nav href={item.path} >
                             <CardComponent variant='elevated' style={{ marginTop: 10 ,width:'100%', maxWidth:500 }}>
                                 <Row style={{ justifyContent: 'space-between' }}>

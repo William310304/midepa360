@@ -38,8 +38,8 @@ export default function HomeScreen() {
   }, []);
 
   return (
-    <>
-      <Scroll >
+
+      <Scroll>
         <CardComponent variant='elevated' >
           <Row style={{ gap: 9 }}>
             <IconGreen color={"#7DBF6C"} name='cash' size={22} />
@@ -151,7 +151,7 @@ export default function HomeScreen() {
            <TextTheme style={{ justifyContent:'center',alignItems:'center', fontSize: 13 }}>No Tiene pagos pendientes. </TextTheme>
         </CardComponent>
       </Scroll>
-    </>
+    
 
   );
 }
@@ -162,6 +162,8 @@ const Scroll = styled.ScrollView.attrs({
     paddingVertical: 20,
     gap: 15,
   },
+  showsVerticalScrollIndicator: false, // 👈 oculta barra vertical
+  showsHorizontalScrollIndicator: false, // 👈 (si quieres también)
 })`
   background: ${({ theme }) => theme.background};
 `

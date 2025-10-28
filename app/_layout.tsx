@@ -1,11 +1,9 @@
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-import 'react-native-reanimated';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useFonts } from 'expo-font';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import 'react-native-reanimated';
 import { ThemeProvider } from 'styled-components/native';
 
 // export const unstable_settings = {
@@ -21,6 +19,7 @@ export default function RootLayout() {
     "Alan_sans_bold": require("../assets/fonts/alan_sans_bold.ttf"),
     "Alan_sans_medium": require("../assets/fonts/alan_sans_medium.ttf"),
     "Alan_sans_regular": require("../assets/fonts/alan_sans_regular.ttf"),
+    "Alan_sans_light": require("../assets/fonts/alan_sans_light.ttf"),
 
   });
   if (!fontsLoaded) {

@@ -1,10 +1,10 @@
 import { Colors } from "@/constants/theme";
+import { config } from '@gluestack-ui/config';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "react-native";
 import { ThemeProvider } from 'styled-components/native';
-import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { config } from '@gluestack-ui/config';
 
 export default function LoginLayout() {
     const colorScheme = useColorScheme() ?? 'light';
@@ -15,7 +15,8 @@ export default function LoginLayout() {
             <GluestackUIProvider config={config}>
                 <Stack screenOptions={{ headerShown: false }}>
                     <Stack.Screen name="index" />
-                    <Stack.Screen name="login" />
+                    <Stack.Screen name="login-residente" />
+                    <Stack.Screen name="login-empleado" />
                 </Stack>
                 <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
             </GluestackUIProvider>

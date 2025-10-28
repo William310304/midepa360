@@ -72,6 +72,7 @@ export default function TabLayout() {
               name="index"
               options={{
                 title: 'Home',
+                // animation:'fade',
                 tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
               }}
             />
@@ -79,6 +80,8 @@ export default function TabLayout() {
               name='servicios'
               options={{
                 title: 'Servicios',
+                // animation:'fade',
+                href:'/(tabs)/servicios',
                 tabBarIcon: ({ color }) => <Ionicons size={28} name="options" color={color} />,
               }} />
             <Tabs.Screen
