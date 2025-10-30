@@ -1,5 +1,5 @@
+import { StyleProp, ViewProps, ViewStyle } from "react-native";
 import styled from "styled-components/native";
-import { StyleProp, ViewStyle, ViewProps } from "react-native";
 
 interface CardProps extends ViewProps {
     children: React.ReactNode;
@@ -41,7 +41,7 @@ const CardContainer = styled.View<{
   border-width: ${({ variant }) => (variant === "outlined" ? 1 : 0)}px;
   border-color: ${({ theme }) => theme.subText};
   elevation: ${({ variant }) => (variant === "elevated" ? 4 : 0)};
-  shadow-color: #000;
+  shadow-color: #2E2E2E;
   shadow-opacity: ${({ variant }) => (variant === "elevated" ? 0.2 : 0)};
   shadow-radius: 3px;
   shadow-offset: 0px 2px;

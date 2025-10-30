@@ -9,7 +9,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 import { Button, ButtonIcon, ButtonText } from '@gluestack-ui/themed';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ChevronRight } from 'lucide-react-native';
+import { AlertTriangleIcon, ChevronRight, QrCodeIcon } from 'lucide-react-native';
 import { useEffect } from 'react';
 import { useColorScheme, View } from 'react-native';
 import styled, { useTheme } from 'styled-components/native';
@@ -26,7 +26,7 @@ export default function HomeScreen() {
       const savedName = await AsyncStorage.getItem("toastNombre");
       console.log("Saved Name:", savedName);
       if (savedName) {
-        showToast('success', '¡Bienvenido!', savedName ?? "Usuario", 5000);
+        showToast('success', '¡Bienvenido!', savedName ?? "Usuario", 3000);
         const all = await AsyncStorage.getAllKeys();
         console.log(all); // debería mostrar "toastNombre"
         console.log(await AsyncStorage.getItem("toastNombre"));
@@ -40,6 +40,41 @@ export default function HomeScreen() {
   return (
 
       <Scroll>
+        <Row style={{justifyContent:'flex-end',gap:5}}>
+          <Btn
+            variant="outline"
+            size="xs"
+            borderRadius={20}
+            onPress={() => console.log("Ir a otros presupuestos")}
+            borderColor='#D77E7E'
+          >
+            <BtnText color='#D77E7E' fontFamily="Alan_sans_medium">S.O.S</BtnText>
+            <ButtonIcon
+              as={AlertTriangleIcon}
+              size='xl'
+              ml="$1"
+              // color={isDark ? '$backgroundDark200' : '$backgroundLight900'}
+              style={{color:"#D77E7E"}}
+            />
+          </Btn>
+          <Btn
+            variant="outline"
+            size="xs"
+            borderRadius={20}
+            onPress={() => console.log("Ir a otros presupuestos")}
+            style={{borderColor:colorText}}
+            // borderColor='#D77E7E'
+          >
+            <BtnText style={{color:colorText}} fontFamily="Alan_sans_medium">Generar QR de pago</BtnText>
+            <ButtonIcon
+              as={QrCodeIcon}
+              size='xl'
+              ml="$1"
+              // color={isDark ? '$backgroundDark200' : '$backgroundLight900'}
+              style={{color:colorText}}
+            />
+          </Btn>
+        </Row>
         <CardComponent variant='elevated' >
           <Row style={{ gap: 9 }}>
             <IconGreen color={"#7DBF6C"} name='cash' size={22} />
@@ -62,13 +97,15 @@ export default function HomeScreen() {
             size="xs"
             borderRadius={20}
             onPress={() => console.log("Ir a otros presupuestos")}
+            borderColor='#8C5CFF'
           >
-            <BtnText fontFamily="Alan_sans_medium">Detalles</BtnText>
+            <BtnText color='#8C5CFF' fontFamily="Alan_sans_medium">Detalles</BtnText>
             <ButtonIcon
               as={ChevronRight}
               size='xl'
               ml="$1"
-              color={isDark ? '$backgroundDark200' : '$backgroundLight900'}
+              // color={isDark ? '$backgroundDark200' : '$backgroundLight900'}
+              style={{color:"#8C5CFF"}}
             />
           </Btn>
         </Row>
@@ -136,15 +173,18 @@ export default function HomeScreen() {
             size="xs"
             borderRadius={20}
             onPress={() => console.log("Ir a otros presupuestos")}
+            borderColor='#8C5CFF'
           >
-            <BtnText fontFamily="Alan_sans_medium">Ver Otros</BtnText>
+            <BtnText color='#8C5CFF' fontFamily="Alan_sans_medium">Ver Otros</BtnText>
             <ButtonIcon
               as={ChevronRight}
               size='xl'
               ml="$1"
-              color={isDark ? '$backgroundDark200' : '$backgroundLight900'}
+              // color={isDark ? '$backgroundDark200' : '$backgroundLight900'}
+              style={{color:"#8C5CFF"}}
             />
           </Btn>
+          
         </Row>
         <TextTheme style={{ marginTop: 15, fontSize: 13 }}>Servicios que requieren tu atencion</TextTheme>
         <CardComponent variant='elevated'>
@@ -192,12 +232,12 @@ const TextTheme = styled.Text`
   color: ${({ theme }) => theme.text};
 `
 const Btn = styled(Button)`
-  border-color: ${({ theme }) => theme.text};
-
+  /* border-color: ${({ theme }) => theme.text}; */
 `
 
 const BtnText = styled(ButtonText)`
-  color: ${({ theme }) => theme.text};
+  /* color: ${({ theme }) => theme.text}; */
+  /* color:'#8C5CFF' */
 `
 const BtnIcon = styled(ButtonIcon) <any>`
      /* color: ${({ theme }) => theme.text}; */

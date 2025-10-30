@@ -13,20 +13,9 @@ export default function Index() {
     return (
         <Container>
 
-            <Image style={{ width: '100%', height: 250, borderRadius: 10 }} source={require('../../assets/images/residence.jpg')} />
+            <Image style={{ width: '100%', height: '30%', borderRadius: 10 }} source={require('../../assets/images/residence.jpg')} />
             <Title>MiDepa360</Title>
-            {/* <Row style={{ marginBottom: 10, marginTop: 30 }}>
-                <Card >
-                    <Logo source={require("../../assets/images/ico_logo.svg")}
-                        // placeholder={{ blurhash }}
-                        contentFit="contain"
-                        // transition={1500}
-                        accessibilityLabel="logo"
-                    />
-                </Card>
-
-                <Title>MiDepa360</Title>
-            </Row> */}
+    
             <Row style={{ marginTop: 10, marginBottom: 10 }} >
                 {/* <LogoSegun name="people" /> */}
                 <SubTitle >{activeTab === "residente" ? "Residente" : "Empleado"}</SubTitle>
@@ -47,7 +36,6 @@ export default function Index() {
                 </TabButton>
             </TabContainer>
 
-            {/* Aquí puedes renderizar el formulario según la pestaña activa */}
             {activeTab === "residente" ? (
                 <LoginResidente />
             ) : (

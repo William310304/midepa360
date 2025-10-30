@@ -22,21 +22,21 @@ const tintColorDark = '#fff';
 export const Colors: Record<'light' | 'dark', DefaultTheme> = {
   light: {
     background: '#fdfdfd',
-    text: '#080808',
-    primary: '#0a7ea4',
+    text: '#1E1E1E',
+    primary: '#8C5CFF',
     splashBackground: '#F0F0F0',
     subText:'#525252',
-    backgroundInput:'#F0F0F0',
-    backgroundCard:'#fdfdfd'
+    backgroundInput:'#f5f5f5',
+    backgroundCard:'#F9F9F9'
   },
   dark: {
     background: '#1A1B1E',
-    text: '#f0f0f0',
-    primary: '#0a7ea4',
+    text: '#EDEDED',
+    primary: '#8C5CFF',
     splashBackground: '#222222',
     subText:'#a0a0a0',
     backgroundInput:'#2a2a2a',
-    backgroundCard:'#2e3035ff'
+    backgroundCard:'#25262A'
   },
 };
 

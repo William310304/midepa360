@@ -1,6 +1,7 @@
 import { Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragIndicatorWrapper, SelectIcon, SelectInput, SelectItem, SelectPortal, SelectTrigger } from "@gluestack-ui/themed";
-import { router } from "expo-router";
+import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { ChevronDownIcon, User } from "lucide-react-native";
+import { useState } from "react";
 import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
@@ -22,6 +23,8 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
     condominios,
     onCondoSelect
 }) => {
+      const [showDrawer, setShowDrawer] = useState(false);
+         const navigation = useNavigation();
     return (
         <HeaderContainer >
 
@@ -41,7 +44,8 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
 
                 <SelectPortal>
                     <SelectBackdrop />
-                    <SelectContent>
+                    <SelectContent
+                    >
                         <SelectDragIndicatorWrapper>
                             <SelectDragIndicator />
                         </SelectDragIndicatorWrapper>
@@ -58,7 +62,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
                     </SelectContent>
                 </SelectPortal>
             </Select>
-            <TouchableOpacity style={styles.profileWrapper} onPress={()=> router.push('/(auth)')} >
+            <TouchableOpacity style={styles.profileWrapper}  onPress={() => navigation.dispatch(DrawerActions.openDrawer())} > 
                 {userImageUri ? (
                     <Image source={{ uri: userImageUri }} style={styles.profileImage} />
                 ) : (
@@ -66,6 +70,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
                     <User size={30} color="#fff" style={styles.profilePlaceholder} />
                 )}
             </TouchableOpacity>
+           
 
         </HeaderContainer>
     )
@@ -80,12 +85,19 @@ const HeaderContainer = styled.View`
   padding-top: 50px;
   background-color: ${({ theme }) => theme.background};
   border-bottom-width: 1px;
-  border-bottom-color: #eee;
+  border-bottom-color: #8C5CFF;
 `;
 
-const SelectedCondo = styled(SelectInput)`
+const SelectedCondo = styled(SelectInput).attrs({
+    numberOfLines:1,
+    // ellipsizeMode: "tail",
+})`
+    text-align: left;
+    flex: 1;
     color: ${({ theme }) => theme.text};
 `
+
+
 const styles = StyleSheet.create({
 
     condoWrapper: {

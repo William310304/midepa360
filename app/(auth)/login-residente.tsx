@@ -4,10 +4,9 @@ import Octicons from "@expo/vector-icons/Octicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useFonts } from "expo-font";
-import { Image } from "expo-image";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Platform, TouchableOpacity, useColorScheme } from "react-native";
+import { TouchableOpacity, useColorScheme } from "react-native";
 import styled from "styled-components/native";
 
 
@@ -113,109 +112,10 @@ export default function LoginResidente() {
                 <LinkText>¿Problema para iniciar sesión? <LinkAccent>Contáctanos</LinkAccent></LinkText>
             </RowLinks>
         </>
-        // <Container >
-        //     {/* <Row >
-        //         <Card >
-        //             <Logo source={require("../../assets/images/ico_logo.svg")}
-        //                 // placeholder={{ blurhash }}
-        //                 contentFit="contain"
-        //                 // transition={1500}
-        //                 accessibilityLabel="logo"
-        //             />
-        //         </Card>
-
-        //         <Title>MiDepa360</Title>
-        //     </Row>
-        //     <Row style={{ marginTop: 15 }} >
-        //         <LogoSegun name="people" />
-        //         <SubText >Residentes</SubText>
-        //     </Row>
-        //     <TextMute>Accede a los servicios de tu hogar</TextMute> */}
-        //     <Form>
-        //         <Label>DNI</Label>
-        //         <Input
-        //             placeholder="Tu DNI"
-        //             placeholderTextColor={colorSchema === 'dark' ? "#8E8E8E" : "#080808"}
-        //             value={dni}
-        //             onChangeText={setDni}
-        //             keyboardType="numeric"
-        //         />
-
-        //         <Label>Contraseña</Label>
-        //         <InputWrapper>
-        //             <InputPassword
-        //                 placeholder="Tu Contraseña"
-        //                 placeholderTextColor={colorSchema === 'dark' ? "#8E8E8E" : "#080808"}
-        //                 value={password}
-        //                 onChangeText={setPassword}
-        //                 secureTextEntry={!showPassword}
-        //             />
-        //             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-        //                 <Octicons
-        //                     name={showPassword ? "eye-closed" : "eye"}
-        //                     size={22}
-        //                     color={colorSchema === 'dark' ? "#8E8E8E" : "#080808"}
-        //                 />
-        //             </TouchableOpacity>
-        //         </InputWrapper>
-
-        //         <LoginButton onPress={handleLogin} disabled={loading}>
-        //             <LoginButtonText>{loading ? "Cargando..." : "Iniciar sesión"}</LoginButtonText>
-        //         </LoginButton>
-        //     </Form>
-
-        //     <RowLinks>
-        //         <LinkText style={{ color: "#8c5cff" }}>¿Olvidaste tu contraseña?</LinkText>
-        //         <LinkText>¿Problema para iniciar sesión? <LinkAccent>Contáctanos</LinkAccent></LinkText>
-        //     </RowLinks>
-        // </Container>
+      
     );
 }
-// people
-const Container = styled.View`
-    flex: 1;
-    /* justify-content: center;  */
-      /* padding-top: ${Platform.OS === "ios" ? 0 : 50}; */
-    align-items: center;
-    background-color: ${({ theme }) => theme.background}
-`
 
-const Logo = styled(Image)`
-    width: 70px;
-    height: 70px;
-    
-`
-const Row = styled.View`
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-    justify-content: center;
-`
-const Card = styled.View`
-    padding: 10px;
-    border-radius: 10px;
-    background-color:#B1B1F9;
-    elevation: 6;
-`
-const Title = styled.Text`
-    font-size: 30px;
-    color: ${({ theme }) => theme.text};
-    /* font-weight: bold; */
-    font-family: "Alan_sans_bold";
-
-`
-const SubText = styled.Text`
-    color: ${({ theme }) => theme.text};
-    font-size: 20px;
-    font-family: "Alan_sans_medium";
-`
-const LogoSegun = styled(Octicons)`
-    font-size: 50px;
-    color: #8C5CFF;
-`
-const TextMute = styled.Text`
-    color: ${({ theme }) => theme.subText};
-`
 
 
 const Form = styled.View`
@@ -224,11 +124,6 @@ const Form = styled.View`
   padding: 20px;
 `;
 
-const Label = styled.Text`
-  color: ${({ theme }) => theme.text};
-  margin-bottom: 5px;
-  font-family: "Alan_sans_medium";
-`;
 
 const Input = styled.TextInput`
   /* width: 100%; */

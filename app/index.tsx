@@ -17,9 +17,9 @@ export default function Index() {
     
     if (!checking && !showSplash) { ///!checking && !showSplash
         if(isAuthenticated){//isAuthenticated
-            router.replace("/(tabs)")
+            router.replace("/(drawer)/(tabs)")
         }else{
-            router.replace("/(auth)/login");
+            router.replace("/(auth)");
         }
     }
       

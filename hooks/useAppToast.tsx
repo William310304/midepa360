@@ -29,7 +29,7 @@ export function useAppToast(){
                     </Toast>
                 )
             },
-            containerStyle:{marginTop:15},
+            // containerStyle:{marginTop:15},
             duration:duration
         })
     }
