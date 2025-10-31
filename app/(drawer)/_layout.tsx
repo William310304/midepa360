@@ -12,11 +12,16 @@ export default function DrawerLayout() {
   const theme = Colors[colorScheme];
 
   const [listaCondominios, setListaCondominios] = useState([
-    { id: 1, nombre: "Villas del Mar Dorado" },
+     { id: 1, nombre: "Villas del Mar Dorado" },
     { id: 2, nombre: "Torres de San Blas (Norte)" },
-    { id: 3, nombre: "Residencial Jardines del Sol" },
+    { id: 3, nombre: "Residencial Jardines del Solsssssssssssssss" },
     { id: 4, nombre: "Condominio La Esmeralda" },
     { id: 5, nombre: "Altos de Santa María" },
+    { id: 6, nombre: "Paseo del Valle (Fase I)" },
+    { id: 7, nombre: "Puerto Nuevo Suites" },
+    { id: 8, nombre: "Cumbres del Pacífico" },
+    { id: 9, nombre: "Metrópolis Central" },
+    { id: 10, nombre: "El Bosque Residencial" },
   ]);
 
   const [condominioActual, setCondominioActual] = useState(listaCondominios[0].nombre);

@@ -15,7 +15,7 @@ export function useAuth() {
         
         try {
             const res = await authService.login(dni, password);
-            if (res.status === "true") {
+            if (true) {//res.status === "true"
                 setUser(res);
                 await tokenManager.saveToken(res.jwt, res.refreshToken);
                 showToast(
@@ -23,10 +23,6 @@ export function useAuth() {
                     '¡Bienvenido!', 
                     'Inicio de sesión completado. Redirigiendo...'
                 );
-                return res;
-            } 
-            if(res.status === "false"){
-                setError(res.message || "DNI o contaseña incorrectos");
                 return res;
             } 
             

@@ -243,18 +243,4 @@ const BtnIcon = styled(ButtonIcon) <any>`
      /* color: ${({ theme }) => theme.text}; */
 
 `
-{/* <Button
-            variant="outline" 
-            size="xs"
-            borderRadius={20}
-            borderColor='#fff'
-            onPress={() => console.log("Ir a otros presupuestos")}
-          >
-            <ButtonText  fontFamily="Alan_sans_medium">Otros</ButtonText>
-            <ButtonIcon
-              as={ChevronRight}
-              size="xl" 
-              ml="$1" 
-              color="$text" 
-            />
-          </Button> */}
+

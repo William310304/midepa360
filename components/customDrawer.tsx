@@ -43,13 +43,13 @@ export function CustomDrawerContent(props: any) {
             <Box alignItems="center" py={30} borderBottomWidth={1} borderColor="#8C5CFF">
                 <Avatar
                     bgColor="$primary500"
-                    size="md"
+                    size="xl"
                 >
                     <AvatarImage
                         source={{ uri: 'https://tierragamer.com/wp-content/uploads/2025/04/One-Piece-Gear-5-2025.webp' }} />
                 </Avatar>
                 <Text mt={8} color="#8C5CFF" fontWeight="$bold" fontSize="$md">
-                    ${name}
+                    {name || 'user'}
                 </Text>
                 <Text color="$textLight500">usuario@correo.com</Text>
             </Box>

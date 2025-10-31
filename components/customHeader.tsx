@@ -2,8 +2,8 @@ import { Select, SelectBackdrop, SelectContent, SelectDragIndicator, SelectDragI
 import { DrawerActions, useNavigation } from "@react-navigation/native";
 import { ChevronDownIcon, User } from "lucide-react-native";
 import { useState } from "react";
-import { Image, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import styled, { useTheme } from "styled-components/native";
 
 interface Condominio {
     id: number;
@@ -23,8 +23,9 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
     condominios,
     onCondoSelect
 }) => {
-      const [showDrawer, setShowDrawer] = useState(false);
-         const navigation = useNavigation();
+    const theme = useTheme()
+    const [showDrawer, setShowDrawer] = useState(false);
+    const navigation = useNavigation();
     return (
         <HeaderContainer >
 
@@ -37,10 +38,22 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
                     if (selected) onCondoSelect(selected);
                 }}
             >
-                <SelectTrigger variant="underlined" size="md">
-                    <SelectedCondo placeholder="Selecciona un condominio" value={condominioName} />
-                    <SelectIcon as={ChevronDownIcon} />
+                <SelectTrigger borderBottomColor={theme.primary} variant="underlined" size="lg" style={{ flex: 1, minWidth: 0 }}>
+                    <Text
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
+                        style={{
+                            flex: 1,
+                            color: theme.text,
+                            minWidth: 0, // importante para que se recorte correctamente
+                        }}
+                    >
+                        {condominioName || "Selecciona un condominio"}
+                    </Text>
+
+                    <SelectIcon as={ChevronDownIcon} style={{ color: theme.primary }} />
                 </SelectTrigger>
+
 
                 <SelectPortal>
                     <SelectBackdrop />
@@ -49,7 +62,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
                         <SelectDragIndicatorWrapper>
                             <SelectDragIndicator />
                         </SelectDragIndicatorWrapper>
-                        <ScrollView style={{width: '100%', maxHeight: 300}}>
+                        <ScrollView style={{ width: '100%', maxHeight: 300 }}>
                             {condominios.map((condo) => (
                                 <SelectItem
                                     key={condo.id}
@@ -62,7 +75,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
                     </SelectContent>
                 </SelectPortal>
             </Select>
-            <TouchableOpacity style={styles.profileWrapper}  onPress={() => navigation.dispatch(DrawerActions.openDrawer())} > 
+            <TouchableOpacity style={styles.profileWrapper} onPress={() => navigation.dispatch(DrawerActions.openDrawer())} >
                 {userImageUri ? (
                     <Image source={{ uri: userImageUri }} style={styles.profileImage} />
                 ) : (
@@ -70,7 +83,7 @@ export const CustomHeader: React.FC<CustomHeaderProps> = ({
                     <User size={30} color="#fff" style={styles.profilePlaceholder} />
                 )}
             </TouchableOpacity>
-           
+
 
         </HeaderContainer>
     )
@@ -81,7 +94,7 @@ const HeaderContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 10px;
   padding-top: 50px;
   background-color: ${({ theme }) => theme.background};
   border-bottom-width: 1px;
@@ -89,11 +102,15 @@ const HeaderContainer = styled.View`
 `;
 
 const SelectedCondo = styled(SelectInput).attrs({
-    numberOfLines:1,
+    // numberOfLines:1,
     // ellipsizeMode: "tail",
+
 })`
-    text-align: left;
-    flex: 1;
+/* text-orientation: sideways-right; */
+     /* overflow: hidden;
+     text-overflow: ellipsis;
+  white-space: nowrap; */
+    /* flex: 1; */
     color: ${({ theme }) => theme.text};
 `
 
